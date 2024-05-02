@@ -1,0 +1,78 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Product{% endblock title %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Add Product</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                <div class="form-group">
+                                    <label for="id_name">Product Name</label>
+                                    <input type="text" id="id_name"
+                                           class="form-control {% if form.name.errors %}is-invalid{% endif %}"
+                                           name="name" value="{{ form.name.value }}">
+                                    {% for error in form.name.errors %}
+                                        <span class="invalid-feedback" role="alert">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_category">Category</label>
+                                    {{ form.category }}
+                                    {% for error in form.category.errors %}
+                                        <span class="invalid-feedback" role="alert">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_quantity">Quantity</label>
+                                    <input type="number" id="id_quantity"
+                                           class="form-control {% if form.quantity.errors %}is-invalid{% endif %}"
+                                           name="quantity" value="{{ form.quantity.value }}">
+                                    {% for error in form.quantity.errors %}
+                                        <span class="invalid-feedback" role="alert">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_selling_price">Selling Price</label>
+                                    <input type="number" id="id_selling_price"
+                                           class="form-control {% if form.selling_price.errors %}is-invalid{% endif %}"
+                                           name="selling_price" value="{{ form.selling_price.value }}">
+                                    {% for error in form.selling_price.errors %}
+                                        <span class="invalid-feedback" role="alert">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_expiring_date">Expiring Date</label>
+                                    <input type="date" id="id_expiring_date"
+                                           class="form-control {% if form.expiring_date.errors %}is-invalid{% endif %}"
+                                           name="expiring_date" value="{{ form.expiring_date.value }}">
+                                    {% for error in form.expiring_date.errors %}
+                                        <span class="invalid-feedback" role="alert">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_vendor">Vendor</label>
+                                    {{ form.vendor }}
+                                    {% for error in form.vendor.errors %}
+                                        <span class="invalid-feedback" role="alert">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            </fieldset>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
